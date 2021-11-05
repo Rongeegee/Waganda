@@ -5,7 +5,7 @@ import React, { useState, useRef } from 'react';
 class Input extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {text: "Please, enter the text."};
+    this.state = {text: ""};
     this.handleChange = this.handleChange.bind(this) 
   }
 
@@ -14,7 +14,7 @@ class Input extends React.Component{
   }
   render() {
     return (
-      <input type="text" value={this.state.text} onChange={this.handleChange}  size="10" />
+      <input type="text" value={this.state.text} placeholder="Please, enter the text." onChange={this.handleChange}  size="10" />
     );
   }
 }
@@ -28,7 +28,7 @@ function Text(pros) {
 }
 
 function TextBoard(){
-  const [text, setText] = useState("Please, enter the text.");
+  const [text, setText] = useState("");
   const inputRef = useRef();
   
   function addText(){
