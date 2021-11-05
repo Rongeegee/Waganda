@@ -1,11 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 
-function Input(){
-  return (
-    <input type="text" id="name" name="name" required  size="10" />
-  );
+
+class Input extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {text: "Please, enter the text."};
+    this.handleChange = this.handleChange.bind(this) 
+  }
+
+  handleChange(event) {
+    this.setState({text: event.target.value});
+  }
+  render() {
+    return (
+      <input type="text" value={this.state.text} onChange={this.handleChange}  size="10" />
+    );
+  }
 }
 
 function Text(pros) {
@@ -18,14 +29,14 @@ function Text(pros) {
 
 function TextBoard(){
   const [text, setText] = useState("Please, enter the text.");
-  const yo = useRef();
+  const inputRef = useRef();
   
   function addText(){
-    setText("wakanda")
+    setText(inputRef.current.state.text);
   }
   return (<div>
             <Text name={text}/>
-            <Input ref={yo} />
+            <Input ref={inputRef} />
             <button onClick={addText}>Add</button>
           </div>
   );
